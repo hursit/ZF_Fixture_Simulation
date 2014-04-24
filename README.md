@@ -1,3 +1,9 @@
+# Uygulamanın Deploy Edilmiş Hali
+  url : http://hursittopal-pasali.rhcloud.com/
+  admin email : a.a@com
+  admin şifre : a
+
+
 # Sistem Hakkında
 
 Bu sistemde Zend Framework kullanılmıştır. Sb-admin teması entegre edilmiştir. 
@@ -12,14 +18,14 @@ Sistemde takımların yenme yenilme algoritması şu şekildedir :
 ### Sisteminize Yüklemek İçin :
   Apache,Mysql,Php kurulu olmalıdır.
   Bu kodlar web klasörünüze bir dizin halinde atılmalıdır(ubuntu deb : /var/www , windows :C://wamp/www vs)
-  
+  mod_rewrite etkinleştirilmelidir.
   Virtual host ayarlarının yapılması gerekmektedir.
   
   Ubuntu icin :
    ~/etc/hosts dosyanıza 127.0.0.1	bu.benim.linkim gibi eklenmesi gerekmektedir.
    Sonra /etc/apache2/sites-available/ klasöründe bu.benim.linkim şeklinde dosya açılmalıdır.
   
- ''' <VirtualHost *:80>
+  <VirtualHost *:80>
   
      ServerName is.is.is
   
@@ -38,4 +44,10 @@ Sistemde takımların yenme yenilme algoritması şu şekildedir :
      </Directory>
   
   </VirtualHost>
-'''
+  
+ Bunları yaptıktan sonra sudo a2ensite bu.benim.linkim yapılarak sisteme vhost ayarlarımız eklenmelidir. sudo service apache2 reload   diyerek artık browser üzerinde bu.benim.linkim'e girince sayfamız hata verse de görüntülenecektir.
+ 
+SQL dizininde bulunan kodları mysql üzerinde calıştırılması gerekmektedir. Veritabanı ve tabloları oluşturmayı kapsamaktadır. Ve ilklendirilmiş bilgiler de tablolarda eklidir.
+Sonra kodlarımızın bulunduğu klasörde /application/configs/application.ini dosyası üzerinde veritabanı ayarlarını yapılmalıdır. 
+
+Artık bu.benim.linkim'e tıkladığınızda sistem düzgün çalışacaktır.

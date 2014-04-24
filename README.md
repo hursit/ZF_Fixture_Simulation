@@ -31,9 +31,9 @@ Sistemde takımların yenme yenilme algoritması şu şekildedir :
   
      ServerName is.is.is
   
-     DocumentRoot /var/www/is/public
+     DocumentRoot /var/www/kod_klasorumuz/public
   
-     <Directory /var/www/is/public>
+     <Directory /var/www/kod_klasorumuz/public>
   
          DirectoryIndex index.php
   

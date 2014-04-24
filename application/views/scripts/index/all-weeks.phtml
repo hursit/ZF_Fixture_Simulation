@@ -11,6 +11,7 @@
           <th>B</th>
           <th>M</th>
           <th>Av.</th>
+          <th>Şmp.Şansı</th>
         </tr>
       </thead>
       <tbody>
@@ -32,6 +33,7 @@ if(count($this->teams)){
             <td><?php echo $team_info['draw'] ?></td>
             <td><?php echo $team_info['defeat'] ?></td>
             <td><?php echo $team_info['avarage'] ?></td>
+            <td><?php echo $gamesModel->getChampionsRate($team->id) ?></td>
           </tr>
 <?php
     }
@@ -63,6 +65,7 @@ if($this->matches_status){
                   <th>B</th>
                   <th>M</th>
                   <th>Av.</th>
+                  <th>Şmp.Şansı</th>
                 </tr>
               </thead>
               <tbody>
@@ -82,6 +85,7 @@ if($this->matches_status){
                   <td><?php echo $team_info['draw'] ?></td>
                   <td><?php echo $team_info['defeat'] ?></td>
                   <td><?php echo $team_info['avarage'] ?></td>
+                  <td><?php echo $gamesModel->getChampionsRate($team->id,$week['week']) ?></td>
                 </tr>
         <?php
             }

@@ -131,5 +131,42 @@ class Application_Model_DbTable_Games extends Zend_Db_Table_Abstract
             'avarage' => $avarage
         );
     }
+    public function getChampionsRate($team_id, $end_week = 6){
+        $team_point = NULL;
+        $total_point = 0;
+        //Hic mac oynanmis mi.?
+        $played_matches = $this->getAll(array('status' => 'played'));
+        if(!count($played_matches)){
+            return 25;
+        }
+        
+        for ($week = 0; $week <= $end_week; $week++) {
+            $played_matches = $this->getAll(array('week' => $week,'status' => 'played'));
+            foreach ($played_matches as $match) {
+                $first_team_goal = $match->first_team_goal;
+                $second_team_goal = $match->second_team_goal;
+                $total_point += ($first_team_goal == $second_team_goal) ? 1 : 3;
+                if($match->first_team_id == $team_id){
+                    if($first_team_goal > $second_team_goal){
+                        $team_point += 3;
+                    }
+                    else if($first_team_goal == $second_team_goal){
+                        $team_point +=1;
+                    }
+                }
+                elseif($match->second_team_id == $team_id){
+                    if($first_team_goal < $second_team_goal){
+                        $team_point += 3;
+                    }
+                    else if($first_team_goal == $second_team_goal){
+                        $team_point +=1;
+                    }
+                }
+            }
+        }
+        //tek virgul alalim
+        $rate = (string)(($team_point/$total_point)*100);
+        return substr($rate, 0, 4);
+    }
 }
 

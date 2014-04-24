@@ -1,0 +1,10 @@
+<?php
+    if(count($this->messages)){ ?> 
+       <?php foreach ($this->messages as $message) { ?>
+            <div class="alert alert-success">
+              <a href="#" class="alert-link">
+                                <?php echo $message; ?>
+              </a>
+            </div>
+      <?php } ?>
+<?php } ?>

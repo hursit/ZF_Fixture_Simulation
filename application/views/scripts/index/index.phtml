@@ -1,0 +1,42 @@
+<h1> Genel Durum</h1>
+<hr />
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Adı</th>
+          <th>Güç</th>
+          <th>P</th>
+          <th>O</th>
+          <th>G</th>
+          <th>B</th>
+          <th>M</th>
+          <th>Av.</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+<!-- Genel Durum -->
+<?php 
+if(count($this->teams)){
+    $gamesModel = new Application_Model_DbTable_Games();
+    foreach ($this->teams as $team) { 
+        $team_info = $gamesModel->getTeamStatus($team->id);
+?>
+          
+          <tr>
+            <td><?php echo $team->name; ?></td>
+            <td><?php echo $team->strength; ?></td>
+            <td><?php echo $team_info['point'] ?></td>
+            <td><?php echo $team_info['played_games_number'] ?></td>
+            <td><?php echo $team_info['win'] ?></td>
+            <td><?php echo $team_info['draw'] ?></td>
+            <td><?php echo $team_info['defeat'] ?></td>
+            <td><?php echo $team_info['avarage'] ?></td>
+          </tr>
+<?php
+    }
+}
+?>
+      </tbody>
+    </table>
+<!-- Genel Durum Bitisi -->

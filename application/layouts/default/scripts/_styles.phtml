@@ -1,0 +1,12 @@
+ <?php
+    $cssFiles = array(
+        'bootstrap.css',
+        'bootstrap.min.css',
+        'bootstrap-theme.css',
+        'bootstrap-theme.min.css',
+        'sb-admin.css');
+
+    foreach ($cssFiles as $val) {
+       $html_css_files = $this->headLink()->appendStylesheet($this->baseUrl('backend_theme/css/' . $val));
+    }
+    echo $html_css_files;

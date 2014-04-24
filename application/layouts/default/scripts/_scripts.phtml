@@ -1,0 +1,9 @@
+<?php
+    $jsFiles = array('bootstrap.js',
+                    'bootstrap.min.js',
+                    'jquery-1.10.2.js');
+
+    foreach ($jsFiles as $val) {
+       $html_js_files = $this->headScript()->appendFile($this->baseUrl('backend_theme/js/' . $val));
+    }
+    echo $html_js_files;

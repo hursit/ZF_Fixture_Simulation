@@ -1,0 +1,89 @@
+<h1><?php echo $this->week ?>. Hafta Durumu</h1>
+<hr />
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Adı</th>
+          <th>Güç</th>
+          <th>P</th>
+          <th>O</th>
+          <th>G</th>
+          <th>B</th>
+          <th>M</th>
+          <th>Av.</th>
+        </tr>
+      </thead>
+      <tbody>
+          
+<!-- Genel Durum -->
+<?php 
+if(count($this->teams)){
+    $teamsModel = new Application_Model_DbTable_Teams();
+    $gamesModel = new Application_Model_DbTable_Games();
+    foreach ($this->teams as $team) { 
+        $team_info = $gamesModel->getTeamStatus($team->id,$this->week);
+?>
+          
+          <tr>
+            <td><?php echo $team->name; ?></td>
+            <td><?php echo $team->strength; ?></td>
+            <td><?php echo $team_info['point'] ?></td>
+            <td><?php echo $team_info['played_games_number'] ?></td>
+            <td><?php echo $team_info['win'] ?></td>
+            <td><?php echo $team_info['draw'] ?></td>
+            <td><?php echo $team_info['defeat'] ?></td>
+            <td><?php echo $team_info['avarage'] ?></td>
+          </tr>
+<?php
+    }
+}
+?>
+      </tbody>
+    </table>
+<!-- Genel Durum Bitisi -->
+
+<!-- haftanin maclari -->
+<table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Ev Sahibi Takım</th>
+          <th>Konuk Takım</th>
+          <th>Skor</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+
+<?php
+        foreach ($this->matches as $match) {
+            echo "<tr>";
+            $firstTeam = $teamsModel->getByFilter(array('id' => $match->first_team_id));
+            $secondTeam = $teamsModel->getByFilter(array('id' => $match->second_team_id));
+            echo "<td>".$firstTeam->name."</td>";
+            echo "<td>".$secondTeam->name."</td>";
+            if($this->games_played_status){
+                echo "<td>".$match->first_team_goal."-". $match->second_team_goal."</td>";
+            }
+            else{
+                echo "<td>Oynanmadi</td>";
+            }
+        }
+        echo "</tbody>
+        </table>";
+?>
+          
+      <center>
+      <?php if($this->week > 1){ 
+          $last_week = $this->week-1;
+      ?>
+          <a href="<?php echo $this->baseUrl('/index/fixture-of-week/'.$last_week) ?>" class="btn btn-primary">Önceki Hafta</a>
+      <?php } ?>
+       
+      <?php if($this->week < 6){ 
+          $next_week = $this->week+1;
+      ?>
+            <a href="<?php echo $this->baseUrl('/index/fixture-of-week/'.$next_week) ?>" class="btn btn-primary">Sonraki Hafta</a>
+      <?php } ?>
+      
+      </center>
+    <hr>

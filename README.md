@@ -19,7 +19,7 @@ Sistemde takımların yenme yenilme algoritması şu şekildedir :
    ~/etc/hosts dosyanıza 127.0.0.1	bu.benim.linkim gibi eklenmesi gerekmektedir.
    Sonra /etc/apache2/sites-available/klasöründe bu.benim.linkim şeklinde dosya açılmalıdır.
   
-``` <VirtualHost *:80>
+  <VirtualHost *:80>
      ServerName is.is.is
      DocumentRoot /var/www/is/public
      <Directory /var/www/is/public>
@@ -29,5 +29,3 @@ Sistemde takımların yenme yenilme algoritması şu şekildedir :
          Allow from all
      </Directory>
   </VirtualHost>
- 
-```

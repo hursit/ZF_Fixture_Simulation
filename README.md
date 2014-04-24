@@ -1,6 +1,8 @@
 # Uygulamanın Deploy Edilmiş Hali
   url : http://hursittopal-pasali.rhcloud.com/
+  
   admin email : a.a@com
+
   admin şifre : a
 
 
